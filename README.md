@@ -1,0 +1,1 @@
+# Clean template without duplicate routes\nDeploy to Vercel, set env vars, and run.\n
