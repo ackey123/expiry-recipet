@@ -1,8 +1,8 @@
 'use client'
+import Tesseract from 'tesseract.js'
 
-// 型エラーを完全回避して動かす版（動作優先）
+// Workerを使わずに直接認識
 export async function ocrImage(file: File) {
-  const Tesseract: any = (await import('tesseract.js')).default
   const { data } = await Tesseract.recognize(file, 'jpn+eng')
   return data.text || ''
 }
