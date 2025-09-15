@@ -1,4 +1,8 @@
 'use client'
-import { createWorker } from 'tesseract.js'
-const workerP = (async()=>{ const w = await createWorker(); await w.loadLanguage('jpn+eng'); await w.initialize('jpn+eng'); return w })()
-export async function ocrImage(file: File){ const w = await workerP; const { data } = await w.recognize(file); return data.text || '' }
+
+// 型エラーを完全回避して動かす版（動作優先）
+export async function ocrImage(file: File) {
+  const Tesseract: any = (await import('tesseract.js')).default
+  const { data } = await Tesseract.recognize(file, 'jpn+eng')
+  return data.text || ''
+}
